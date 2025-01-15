@@ -1,6 +1,6 @@
-import { MercadoPagoConfig, Preference } from 'mercadopago'
+import { MercadoPagoConfig, Payment, Preference } from 'mercadopago'
 import type { PreferenceRequest } from 'mercadopago/dist/clients/preference/commonTypes'
-
+import { createHmac } from 'node:crypto'
 type CreatePaymentIntent = {
   amount: number
   description: string
@@ -36,6 +36,7 @@ export class MercadoPagoService {
     metadata,
   }: CreatePaymentIntent) {
     const itemId = crypto.randomUUID()
+    console.log(import.meta.env.MERCADO_PAGO_ACCESS_TOKEN)
     const preference = {
       items: [
         {
@@ -44,6 +45,7 @@ export class MercadoPagoService {
           quantity: 1,
           currency_id: 'BRL',
           unit_price: amount,
+          category_id: 'services',
         },
       ],
       payer: {
@@ -53,7 +55,18 @@ export class MercadoPagoService {
         success: `${import.meta.env.APP_BASE_URL}/payment/success`,
         failure: `${import.meta.env.APP_BASE_URL}/payment/failure`,
       },
-      auto_return: 'all',
+      auto_return: 'approved',
+      payment_methods: {
+        excluded_payment_methods: [
+          {
+            id: 'bolbradesco',
+          },
+          {
+            id: 'pec',
+          },
+        ],
+        installments: 4, // Número de parcelas
+      },
       external_reference: metadata?.externalReference ?? '',
       metadata,
     } satisfies PreferenceRequest
@@ -69,9 +82,30 @@ export class MercadoPagoService {
   }
 
   async getPaymentStatus(paymentId: string) {
-    const payment = new Preference(this.client)
-    const response = await payment.get({ preferenceId: paymentId })
-    return response
+    const payment = new Payment(this.client)
+    const paymentData = await payment.get({ id: paymentId })
+    if (
+      paymentData.status === 'approved' || // Pagamento por cartão OU
+      paymentData.date_approved !== null // Pagamento por Pix
+    ) {
+      console.log('Pagamento aprovado', { paymentData })
+
+      return {
+        status: 'approved',
+        payment_id: paymentId,
+        external_reference: paymentData.external_reference,
+      }
+    }
+
+    console.log('Pagamento pendente', { paymentData })
+
+    return {
+      status: 'pending',
+      payment_id: paymentId,
+      external_reference: paymentData.external_reference,
+    }
+
+    // TODO: Implementar lógica para lidar com o pagamento pendente
   }
 
   static extractPaymentParams(url: string): PaymentSuccessParams {
@@ -92,5 +126,55 @@ export class MercadoPagoService {
       processing_mode: urlParams.get('processing_mode') || '',
       merchant_account_id: urlParams.get('merchant_account_id'),
     }
+  }
+
+  verifyMercadoPagoSignature(request: Request) {
+    const xSignature = request.headers.get('x-signature')
+    const xRequestId = request.headers.get('x-request-id')
+    if (!xSignature || !xRequestId) {
+      console.log('Missing x-signature or x-request-id header')
+      return false
+    }
+
+    const signatureParts = xSignature.split(',')
+    let ts = ''
+    let v1 = ''
+    signatureParts.forEach((part) => {
+      const [key, value] = part.split('=')
+      if (key.trim() === 'ts') {
+        ts = value.trim()
+      } else if (key.trim() === 'v1') {
+        v1 = value.trim()
+      }
+    })
+
+    if (!ts || !v1) {
+      console.log('Missing ts or v1 in x-signature header')
+      return false
+    }
+
+    const url = new URL(request.url)
+    const dataId = url.searchParams.get('data.id')
+
+    let manifest = ''
+    if (dataId) {
+      manifest += `id:${dataId};`
+    }
+    if (xRequestId) {
+      manifest += `request-id:${xRequestId};`
+    }
+    manifest += `ts:${ts};`
+
+    const secret = import.meta.env.MERCADO_PAGO_WEBHOOK_SECRET
+    const hmac = createHmac('sha256', secret)
+    hmac.update(manifest)
+    const generatedHash = hmac.digest('hex')
+
+    if (generatedHash !== v1) {
+      console.log('Invalid signature')
+      return false
+    }
+
+    return true
   }
 }

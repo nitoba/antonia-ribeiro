@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import { Button } from "@/components/ui/button";
+import ImageNotFound404 from "@/assets/404.jpeg";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Página não encontrada">
+  <div
+    class="min-h-screen bg-blue-50 flex items-center justify-center px-4 sm:px-6 lg:px-8"
+  >
+    <div class="max-w-md w-full space-y-8 text-center">
+      <div>
+        <Image
+          src={ImageNotFound404}
+          alt="Ilustração de pessoa mostrando o caminho"
+          width={200}
+          height={200}
+          class="mx-auto rounded-full"
+        />
+        <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+          😕 Ops... Parece que você se perdeu por aqui.
+        </h2>
+      </div>
+      <div class="mt-2 text-center text-sm text-gray-600">
+        <p>
+          Sabemos como é frustrante não encontrar o que procura, mas não se
+          preocupe: estamos aqui para te ajudar a voltar ao caminho certo!
+        </p>
+        <p class="mt-3">
+          Este espaço pode estar vazio, mas o cuidado e a atenção que você
+          merece estão apenas a um clique de distância.
+        </p>
+      </div>
+      <div class="mt-5 space-y-4">
+        <Button className="w-full">
+          <a href="/"> 1️⃣ Voltar para a Página Inicial </a>
+        </Button>
+        <Button variant="outline" className="w-full">
+          <a href="https://dub.sh/contato" rel="noopener noreferrer">
+            2️⃣ Entrar em Contato com a Psicóloga Antonia Ribeiro
+          </a>
+        </Button>
+      </div>
+      <div class="mt-8 text-sm text-gray-500">
+        <p class="font-medium">
+          🌟 Não desista de buscar o que você precisa. Caso tenha alguma dúvida
+          ou precise de ajuda, envie uma mensagem para o nosso WhatsApp ou
+          e-mail. Estamos sempre à disposição para ajudar você.
+        </p>
+        <p class="mt-2 font-semibold text-blue-600">
+          Bem-estar é sobre seguir em frente, mesmo nos caminhos inesperados. 💙
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

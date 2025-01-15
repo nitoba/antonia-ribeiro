@@ -20,25 +20,8 @@ if (!booking) {
   return Astro.redirect("/404");
 }
 
-if (booking.status !== "PENDING") {
-  console.log("Booking is not pending");
-  Astro.response.status = 404;
-  return Astro.redirect("/404");
-}
-
-const bookingConfirmed = await calComService.confirmBooking(booking.uid);
-
-if (!bookingConfirmed) {
-  console.log("Booking could not be confirmed");
-  Astro.response.status = 404;
-  return Astro.redirect("/404");
-}
-
-const googleMeetLink =
-  bookingConfirmed.metadata.videoCallUrl ?? bookingConfirmed.meetingUrl;
-
-console.log("Google Meet Link", bookingConfirmed);
-const appointmentDate = new Date(bookingConfirmed.start);
+const googleMeetLink = booking.meetingUrl;
+const appointmentDate = new Date(booking.start);
 ---
 
 <Layout title="Compra realizada com sucesso">

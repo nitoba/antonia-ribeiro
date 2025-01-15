@@ -16,6 +16,10 @@ export default defineConfig({
         context: "server",
         access: "secret",
       }),
+      MERCADO_PAGO_WEBHOOK_SECRET: envField.string({
+        context: "server",
+        access: "secret",
+      }),
       CAL_API_KEY: envField.string({
         context: "server",
         access: "secret",
