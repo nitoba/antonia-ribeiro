@@ -26,7 +26,7 @@ type PaymentSuccessParams = {
 export class MercadoPagoService {
   private client = new MercadoPagoConfig({
     accessToken: import.meta.env.MERCADO_PAGO_ACCESS_TOKEN,
-    options: { timeout: 5000 },
+    options: { timeout: 5000, idempotencyKey: crypto.randomUUID() },
   })
 
   async createPaymentIntent({
@@ -36,7 +36,6 @@ export class MercadoPagoService {
     metadata,
   }: CreatePaymentIntent) {
     const itemId = crypto.randomUUID()
-    console.log(import.meta.env.MERCADO_PAGO_ACCESS_TOKEN)
     const preference = {
       items: [
         {

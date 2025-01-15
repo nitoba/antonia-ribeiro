@@ -20,8 +20,8 @@ if (!booking) {
   return Astro.redirect("/404");
 }
 
-const googleMeetLink = booking.meetingUrl;
-const appointmentDate = new Date(booking.start);
+const googleMeetLink = booking.metadata.videoCallUrl;
+const appointmentDate = new Date(booking.startTime);
 ---
 
 <Layout title="Compra realizada com sucesso">

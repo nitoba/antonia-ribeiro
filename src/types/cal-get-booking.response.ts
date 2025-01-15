@@ -15,7 +15,7 @@ export type CalGetBookingResponse = {
     cancellationReason: string
     reschedulingReason: string
     rescheduledFromUid: string
-    start: string
+    startTime: string
     end: string
     duration: number
     eventTypeId: number
@@ -27,9 +27,7 @@ export type CalGetBookingResponse = {
     location: string
     absentHost: boolean
     createdAt: string
-    metadata: {
-      key: string
-    }
+    metadata: Record<string, any>
     attendees: Array<{
       name: string
       email: string
