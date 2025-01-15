@@ -1,0 +1,49 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { PurchaseSuccess } from "@/components/payments-updates/purchase-success";
+import { MercadoPagoService } from "@/lib/mercado-pago.service";
+import { CalComService } from "@/lib/cal-com.service";
+const calComService = new CalComService();
+const params = MercadoPagoService.extractPaymentParams(Astro.url.href);
+
+if (!params.external_reference) {
+  console.log("No external reference found");
+  Astro.response.status = 404;
+  return Astro.redirect("/404");
+}
+
+const booking = await calComService.getBooking(params.external_reference);
+
+if (!booking) {
+  console.log("No booking found");
+  Astro.response.status = 404;
+  return Astro.redirect("/404");
+}
+
+if (booking.status !== "PENDING") {
+  console.log("Booking is not pending");
+  Astro.response.status = 404;
+  return Astro.redirect("/404");
+}
+
+const bookingConfirmed = await calComService.confirmBooking(booking.uid);
+
+if (!bookingConfirmed) {
+  console.log("Booking could not be confirmed");
+  Astro.response.status = 404;
+  return Astro.redirect("/404");
+}
+
+const googleMeetLink =
+  bookingConfirmed.metadata.videoCallUrl ?? bookingConfirmed.meetingUrl;
+
+console.log("Google Meet Link", bookingConfirmed);
+const appointmentDate = new Date(bookingConfirmed.start);
+---
+
+<Layout title="Compra realizada com sucesso">
+  <PurchaseSuccess
+    appointmentDate={appointmentDate}
+    googleMeetLink={googleMeetLink}
+  />
+</Layout>
