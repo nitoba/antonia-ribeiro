@@ -8,13 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { AlertCircle, ArrowRight, MessageCircle } from 'lucide-react'
+import { AlertCircle, MessageCircle } from 'lucide-react'
 
 type PurchaseFailedProps = {
-  onTryAgain: () => void
+  onTryAgain?: () => void
 }
 
-export function PurchaseFailed({ onTryAgain }: PurchaseFailedProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function PurchaseFailed(_props: PurchaseFailedProps) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-blue-50 p-4">
       <Card className="w-full max-w-2xl shadow-lg">
@@ -37,7 +38,10 @@ export function PurchaseFailed({ onTryAgain }: PurchaseFailedProps) {
             <ul className="list-none space-y-2">
               <li className="flex items-start">
                 <span className="text-blue-600 mr-2">1️⃣</span>
-                <span>Tente novamente clicando no botão abaixo.</span>
+                <span>
+                  Tente novamente clicando no botão no email recebido no seu
+                  email.
+                </span>
               </li>
               <li className="flex items-start">
                 <span className="text-blue-600 mr-2">2️⃣</span>
@@ -47,13 +51,13 @@ export function PurchaseFailed({ onTryAgain }: PurchaseFailedProps) {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col items-stretch space-y-4">
-          <Button
+          {/* <Button
             className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-6"
             onClick={onTryAgain}
           >
             Tentar novamente
             <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          </Button> */}
           <Button
             variant="outline"
             className="w-full text-blue-600 border-blue-600 hover:bg-blue-50 text-lg py-6"
