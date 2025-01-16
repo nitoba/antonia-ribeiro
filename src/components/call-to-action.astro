@@ -1,5 +1,6 @@
 ---
 import Container from "./container.astro";
+const CalEventUrl = import.meta.env.CAL_EVENT_URL;
 ---
 
 <div class="relative">
@@ -72,7 +73,7 @@ import Container from "./container.astro";
         </p>
         <div class="flex flex-wrap justify-center gap-6">
           <a
-            href="https://cal.com/psi.antoniaribeiro/agendamentos"
+            href={CalEventUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"

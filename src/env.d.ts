@@ -4,6 +4,7 @@ interface ImportMetaEnv {
   readonly MERCADO_PAGO_ACCESS_TOKEN: string
   readonly MERCADO_PAGO_WEBHOOK_SECRET: string
   readonly CAL_API_KEY: string
+  readonly CAL_EVENT_URL: string
   readonly APP_BASE_URL: string
   // more env variables...
 }

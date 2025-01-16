@@ -2,6 +2,8 @@
 import Container from "./container.astro";
 import { Image } from "astro:assets";
 
+const CalEventUrl = import.meta.env.CAL_EVENT_URL;
+
 const links = [
   {
     to: "/#home",
@@ -112,7 +114,7 @@ const links = [
 
           <div class="mt-12 lg:mt-0">
             <a
-              href="https://cal.com/psi.antoniaribeiro/agendamentos"
+              href={CalEventUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"

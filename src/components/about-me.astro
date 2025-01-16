@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import { Card, CardContent } from "@/components/ui/card";
 import { Brain, Heart, MessageCircle, Sparkles } from "lucide-react";
+
+const CalEventUrl = import.meta.env.CAL_EVENT_URL;
 ---
 
 <section class="py-24 bg-gradient-to-b from-white to-purple-50/50" id="about">
@@ -120,7 +122,7 @@ import { Brain, Heart, MessageCircle, Sparkles } from "lucide-react";
         .
       </p>
       <a
-        href="https://cal.com/psi.antoniaribeiro/agendamentos"
+        href={CalEventUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
