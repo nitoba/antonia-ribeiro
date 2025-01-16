@@ -1,22 +1,36 @@
 ---
 import Container from "./container.astro";
+import logo from "@/assets/logo.svg";
+import { Image } from "astro:assets";
 
 const links = [
   {
+    to: "/#home",
+    label: "Home",
+  },
+  {
+    to: "/#about",
+    label: "Sobre",
+  },
+  {
     to: "/#features",
-    label: "Features",
+    label: "Sobre os serviços",
   },
   {
     to: "/#solution",
-    label: "Solution",
+    label: "Como Funciona",
+  },
+  // {
+  //   to: "/#reviews",
+  //   label: "Reviews",
+  // },
+  {
+    to: "/#blog",
+    label: "Blog",
   },
   {
-    to: "/#reviews",
-    label: "Reviews",
-  },
-  {
-    to: "https://github.com/luasenvy/nextjs-astro-theme",
-    label: "NextJS Version",
+    to: "/#contact",
+    label: "Contato",
   },
 ];
 ---
@@ -24,7 +38,7 @@ const links = [
 <header>
   <nav
     id="nav"
-    class="absolute group z-10 w-full border-b border-black/5 dark:border-white/5 lg:border-transparent"
+    class="absolute group z-10 w-full border-b border-black/5 dark:border-white/5 lg:border-transparent backdrop-blur-sm lg:bg-gray-50 bg-gray-50/50 dark:backdrop-blur-none dark:lg:bg-transparent"
   >
     <Container>
       <div
@@ -34,22 +48,23 @@ const links = [
           <a
             href="/#home"
             aria-label="logo"
-            class="flex items-center space-x-2"
+            class="flex items-center space-x-2 px-4 py-1.5 pr-3 rounded-lg dark:bg-gray-800"
           >
-            <div aria-hidden="true" class="flex space-x-1">
-              <div class="size-4 rounded-full bg-gray-900 dark:bg-white"></div>
-              <div class="h-6 w-2 bg-primary"></div>
+            <div aria-hidden="true" class="-ml-1">
+              <Image src={logo} alt="logo" class="size-12" />
             </div>
-            <span class="text-2xl font-bold text-gray-900 dark:text-white"
-              >Astrolus</span
+            <span
+              class="text-4xl font-bold text-[#9abdbe] dark:text-white font-logo"
             >
+              ANTONIA
+            </span>
           </a>
 
           <div class="relative flex max-h-10 items-center lg:hidden">
             <button
               aria-label="humburger"
               id="hamburger"
-              class="relative -mr-6 p-6 active:scale-95 duration-300"
+              class="relative -mr-6 p-6 mt-[50%] active:scale-95 duration-300"
             >
               <div
                 aria-hidden="true"
@@ -93,17 +108,6 @@ const links = [
                   </a>
                 ))
               }
-              <a
-                href="https://tailtips.dev"
-                target="_blank"
-                class="flex gap-2 font-semibold text-gray-700 transition hover:text-primary dark:text-white dark:hover:text-white md:px-4"
-              >
-                <span>TailwindCSS Tips</span>
-                <span
-                  class="flex rounded-full border bg-primary/20 px-2 py-0.5 text-xs tracking-wider text-purple-700 dark:bg-white/10 dark:text-orange-300"
-                  >New</span
-                >
-              </a>
             </div>
           </div>
 

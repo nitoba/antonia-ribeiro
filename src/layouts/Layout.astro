@@ -1,6 +1,7 @@
 ---
 import "@/styles/globals.css";
-import "@/styles/tailus.css";
+import { join } from "node:path";
+// import "@/styles/tailus.css";
 import { AstroFont } from "astro-font";
 import AppHeader from "@/components/app-header.astro";
 import AppFooter from "@/components/app-footer.astro";
@@ -37,10 +38,29 @@ const { title } = Astro.props;
           googleFontsURL:
             "https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap",
         },
+        {
+          src: [
+            {
+              style: "normal",
+              weight: "400",
+              path: join(
+                process.cwd(),
+                "public",
+                "fonts",
+                "GlacialIndifference-Regular.otf"
+              ),
+            },
+          ],
+          name: "Glacial",
+          preload: true,
+          display: "swap",
+          selector: "html",
+          fallback: "sans-serif",
+        },
       ]}
     />
   </head>
-  <body class="bg-white dark:bg-gray-950">
+  <body class="bg-[#e9e9e9]/80 dark:bg-gray-950">
     <AppHeader />
     <slot />
     <AppFooter />

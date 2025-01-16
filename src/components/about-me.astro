@@ -1,0 +1,133 @@
+---
+import { Image } from "astro:assets";
+import { Card, CardContent } from "@/components/ui/card";
+import { Brain, Heart, MessageCircle, Sparkles } from "lucide-react";
+import meImage from "@/assets/me.png";
+---
+
+<section class="py-24 bg-gradient-to-b from-white to-purple-50/50" id="about">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <Image
+        src={meImage}
+        alt="Image de Antonia"
+        class="rounded-full w-48 h-48 mx-auto mb-4"
+      />
+      <h2 class="text-[2.5rem] font-medium text-primary mb-4">
+        Olá!👋 Eu sou a Antonia Ribeiro
+      </h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300">
+        Sua aliada na busca por equilíbrio emocional. Com empatia, ciência e
+        acolhimento, ajudo adolescentes e jovens adultos a transformarem suas
+        vidas.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+      <Card
+        className="border-0 shadow-sm hover:shadow-md transition-shadow duration-200"
+      >
+        <CardContent className="p-8">
+          <Sparkles className="w-10 h-10 text-[#0E4B5A] mb-6" />
+          <h3 class="text-xl font-medium text-primary mb-3">Quem sou eu?</h3>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Sou psicóloga com ênfase em{" "}
+            <span class="font-medium">
+              Terapia Cognitivo-Comportamental (TCC)
+            </span>
+            , dedicada a ajudar adolescentes e jovens adultos a superarem desafios
+            como ansiedade, baixa autoestima e dependência emocional. Minha missão
+            é guiar você rumo a uma vida mais equilibrada e plena.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card
+        className="border-0 shadow-sm hover:shadow-md transition-shadow duration-200"
+      >
+        <CardContent className="p-8">
+          <Heart className="w-10 h-10 text-[#0E4B5A] mb-6" />
+          <h3 class="text-xl font-medium text-primary mb-3">
+            Por que terapia online?
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Acredito que o cuidado com a saúde mental deve ser acessível e
+            adaptável à sua rotina. Com a terapia online, você pode receber
+            apoio no conforto do seu espaço, através de uma abordagem{" "}
+            <span class="font-medium">
+              acolhedora, motivacional e cientificamente embasada
+            </span>
+            .
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card
+        className="border-0 shadow-sm hover:shadow-md transition-shadow duration-200"
+      >
+        <CardContent className="p-8">
+          <Brain className="w-10 h-10 text-[#0E4B5A] mb-6" />
+          <h3 class="text-xl font-medium text-primary mb-3">Minha abordagem</h3>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Com experiência em diversas realidades emocionais, reconheço a
+            singularidade de cada indivíduo. Meu trabalho é personalizado,
+            respeitando sua jornada única e auxiliando você a transformar
+            pensamentos e comportamentos que possam estar limitando seu
+            potencial.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card
+        className="border-0 shadow-sm hover:shadow-md transition-shadow duration-200"
+      >
+        <CardContent className="p-8">
+          <MessageCircle className="w-10 h-10 text-[#0E4B5A] mb-6" />
+          <h3 class="text-xl font-medium text-primary mb-3">
+            O que você encontrará aqui
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Além das sessões terapêuticas, compartilho regularmente conteúdos
+            sobre:
+          </p>
+          <ul
+            class="list-disc list-inside mt-3 text-gray-700 dark:text-gray-300 space-y-1"
+          >
+            <li>Saúde mental e bem-estar</li>
+            <li>Construção de relacionamentos saudáveis</li>
+            <li>Estratégias práticas para o dia a dia</li>
+          </ul>
+          <p class="mt-3 text-gray-700 dark:text-gray-300">
+            Tudo apresentado de forma clara e acessível, para apoiar você nos
+            desafios cotidianos.
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+
+    <div class="flex flex-col items-center justify-center max-w-2xl mx-auto">
+      <h3 class="text-2xl font-medium text-primary mb-4">
+        Pronto para dar o primeiro passo?
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300 mb-8 text-center">
+        Se você busca um espaço seguro para expressar seus sentimentos e
+        construir uma vida mais leve e equilibrada,
+        <span class="font-medium">
+          {" "}
+          estou aqui para ouvir e apoiar você nessa jornada
+        </span>
+        .
+      </p>
+      <a
+        href="https://cal.com/psi.antoniaribeiro/agendamentos"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
+      >
+        <span class="relative text-base font-semibold text-white">
+          Agende sua consulta
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
