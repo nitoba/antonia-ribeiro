@@ -1,0 +1,25 @@
+{
+  "name": "astro-project",
+  "version": "1.0.0",
+  "description": "A project using Astro to showcase features with reusable components.",
+  "main": "src/pages/features.astro",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "start": "astro start"
+  },
+  "dependencies": {
+    "astro": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "prettier": "^2.0.0"
+  },
+  "keywords": [
+    "astro",
+    "components",
+    "features"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

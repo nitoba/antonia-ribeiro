@@ -1,9 +1,20 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import Stats from "@/components/stats.astro";
+import Features from "@/components/features.astro";
+import HeroSection from "@/components/hero-section.astro";
+import Layout from "../layouts/Layout.astro";
+import Testimonials from "@/components/testimonials.astro";
+import CallToAction from "@/components/call-to-action.astro";
+import Blog from "@/components/blog.astro";
 ---
 
-<Layout title="">
-  <script>
-    window.location.href = "https://bio.link/psiantoniaribeiro";
-  </script>
+<Layout title="Welcome to Astrolus.">
+  <main class="space-y-40 mb-40">
+    <HeroSection />
+    <Features />
+    <Stats />
+    <Testimonials />
+    <CallToAction />
+    <Blog />
+  </main>
 </Layout>

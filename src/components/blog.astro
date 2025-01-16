@@ -1,0 +1,48 @@
+---
+import Container from "./container.astro";
+import BlogPost from "./blog-post.astro";
+
+const posts = [
+  {
+    imgSrc:
+      "https://d.rapidcdn.app/snapinsta?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LWlhZDMtMi5jZG5pbnN0YWdyYW0uY29tL3YvdDUxLjI5MzUwLTE1LzQ3Mzg4ODEyM185NDU3NjkzNzc2NTc0MzJfNDYwODkzMTU2NjcwOTA1NzMxN19uLmpwZz9zdHA9ZHN0LWpwZ19lMzVfcDY0MHg2NDBfc2gwLjA4X3R0NiZlZmc9ZXlKMlpXNWpiMlJsWDNSaFp5STZJbWx0WVdkbFgzVnliR2RsYmk0eE1qQXdlREUxTURBdWMyUnlMbVl5T1RNMU1DNWtaV1poZFd4MFgybHRZV2RsSW4wJl9uY19odD1zY29udGVudC1pYWQzLTIuY2RuaW5zdGFncmFtLmNvbSZfbmNfY2F0PTEwMCZfbmNfb2hjPVpxV0tpMHNfa3NZUTdrTnZnR2hXU25nJl9uY19naWQ9YmExNTI1MTQwZDhhNGZkMmIyYjZlYzNiNmM5MWU0NDMmZWRtPUFQczE3Q1VCQUFBQSZjY2I9Ny01Jm9oPTAwX0FZQ1pfQlgtM2l4ZzBiMDNCSU9Qd2VvMUFCYjFkWm9naF9Tb3F3aUVSYXVrNmcmb2U9Njc4RjAxRTAmX25jX3NpZD0xMGQxM2IiLCJmaWxlbmFtZSI6IlNuYXBpbnN0LmFwcF90aHVtYl80NzM4ODgxMjNfOTQ1NzY5Mzc3NjU3NDMyXzQ2MDg5MzE1NjY3MDkwNTczMTdfbi5qcGcifQ.FlktUvg1RRIUfYFFfFG5K1CJ0Na4tEsHJf2eq-Xk37s",
+    title: "💭 Amor ou dependência emocional?",
+    description:
+      "Entre o amor e a dependência emocional, existe uma diferença importante.",
+    link: "https://www.instagram.com/antoniaribeiro.psi/p/DE2zUIQxUsB/",
+  },
+  {
+    imgSrc:
+      "https://d.rapidcdn.app/snapinsta?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LWxheDMtMS5jZG5pbnN0YWdyYW0uY29tL3YvdDUxLjI5MzUwLTE1LzQ3MzgzNDUxNF8xMTM2MTE2MjQxNDYwNzA2XzgwNDcwMTk3MzQ1MDI5MjEzMTZfbi5qcGc_c3RwPWRzdC1qcGdfZTM1X3R0NiZlZmc9ZXlKMlpXNWpiMlJsWDNSaFp5STZJbWx0WVdkbFgzVnliR2RsYmk0MU1EQjROVEF3TG5Oa2NpNW1Namt6TlRBdVpHVm1ZWFZzZEY5cGJXRm5aU0o5Jl9uY19odD1zY29udGVudC1sYXgzLTEuY2RuaW5zdGFncmFtLmNvbSZfbmNfY2F0PTExMCZfbmNfb2hjPWJZVVVQbTIwUHZJUTdrTnZnRkNpZW5fJl9uY19naWQ9NjQyNjVkOTFkZmE1NGI2OTk3NjMyZjY1ZDA1N2ExYWQmZWRtPUFQczE3Q1VCQUFBQSZjY2I9Ny01Jm9oPTAwX0FZQ3phVTVLdVAxZEt6WE5jZ05YSzdmb2FDblNLaDZyVXRQYjNXOFlkQjM0Mmcmb2U9Njc4RjA5REYmX25jX3NpZD0xMGQxM2IiLCJmaWxlbmFtZSI6IlNuYXBpbnN0LmFwcF90aHVtYl80NzM4MzQ1MTRfMTEzNjExNjI0MTQ2MDcwNl84MDQ3MDE5NzM0NTAyOTIxMzE2X24uanBnIn0.zkYIDEfo9uPbB3UVRgfBB9oGB8IWM7Pz-ucFjpkcYSI",
+    title: "🎨 Identidade Visual",
+    description:
+      "Você sabia que as cores têm o poder de contar histórias e despertar emoções?",
+    link: "https://www.instagram.com/p/DE2tmnVxwiN",
+  },
+  {
+    imgSrc:
+      "https://d.rapidcdn.app/snapinsta?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LXNlYTEtMS5jZG5pbnN0YWdyYW0uY29tL3YvdDUxLjI5MzUwLTE1LzQ3MjUzOTY4OF8zMzExOTY2NjcyMjcyMTM5XzQ1NDQ5MjA5NDIyMzc4MjMxNDNfbi5qcGc_c3RwPWRzdC1qcGdfZTM1X3A2NDB4NjQwX3NoMC4wOF90dDYmZWZnPWV5SjJaVzVqYjJSbFgzUmhaeUk2SW1sdFlXZGxYM1Z5YkdkbGJpNHhORFF3ZURFNE1EQXVjMlJ5TG1ZeU9UTTFNQzVrWldaaGRXeDBYMmx0WVdkbEluMCZfbmNfaHQ9c2NvbnRlbnQtc2VhMS0xLmNkbmluc3RhZ3JhbS5jb20mX25jX2NhdD0xMTEmX25jX29oYz1JSTRGVS14ZkdhSVE3a052Z0hwOG9YMyZfbmNfZ2lkPTgxZTM4NTI5MWVjNDQyMjI5OThlZmI4NmM2ZThiNmRkJmVkbT1BUHMxN0NVQkFBQUEmY2NiPTctNSZvaD0wMF9BWUEtcm1uMDhaaE1SbXp5b3NXcUhqTkpURWxqWXNyOEhabl9uOThuSnM4OVNBJm9lPTY3OEYwNEMwJl9uY19zaWQ9MTBkMTNiIiwiZmlsZW5hbWUiOiJTbmFwaW5zdC5hcHBfdGh1bWJfNDcyNTM5Njg4XzMzMTE5NjY2NzIyNzIxMzlfNDU0NDkyMDk0MjIzNzgyMzE0M19uLmpwZyJ9.3C0JWmEcgvXxStJtSi7OBiuXVX-7XhQOPoPoKAV4wSs",
+    title: "💖 Amor que Liberta ou Amor que Prende?",
+    description:
+      "Descubra como distinguir entre amor verdadeiro e dependência emocional e construa relacionamentos mais leves e saudáveis. ✨",
+    link: "https://www.instagram.com/p/DE27T6cxrgA/",
+  },
+];
+---
+
+<div id="blog">
+  <Container>
+    <div class="mb-12 space-y-2 text-center">
+      <h2 class="text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
+        Conteúdos que fazem a diferença no seu dia a dia.
+      </h2>
+      <p class="lg:mx-auto lg:w-6/12 text-gray-600 dark:text-gray-300">
+        Explore dicas práticas e informações confiáveis sobre saúde mental,
+        relacionamentos e bem-estar emocional.
+      </p>
+    </div>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {posts.map((post) => <BlogPost {...post} />)}
+    </div>
+  </Container>
+</div>
