@@ -1,6 +1,5 @@
 ---
 import Container from "./container.astro";
-import logo from "@/assets/logo.png";
 import { Image } from "astro:assets";
 ---
 
@@ -8,8 +7,10 @@ import { Image } from "astro:assets";
   <Container>
     <div class="mx-auto max-w-screen-xl text-center">
       <Image
-        src={logo}
+        src="/images/logo.png"
         alt="Logo"
+        width={200}
+        height={200}
         class="h-auto mx-auto lg:w-[30%] flex flex-col justify-center"
       />
 

@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import { Button } from "@/components/ui/button";
-import ImageNotFound404 from "@/assets/404.jpeg";
 import Layout from "@/layouts/Layout.astro";
 ---
 
@@ -12,7 +11,7 @@ import Layout from "@/layouts/Layout.astro";
     <div class="max-w-md w-full space-y-8 text-center">
       <div>
         <Image
-          src={ImageNotFound404}
+          src="/images/404.jpeg"
           alt="Ilustração de pessoa mostrando o caminho"
           width={200}
           height={200}

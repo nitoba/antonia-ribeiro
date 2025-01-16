@@ -2,15 +2,16 @@
 import { Image } from "astro:assets";
 import { Card, CardContent } from "@/components/ui/card";
 import { Brain, Heart, MessageCircle, Sparkles } from "lucide-react";
-import meImage from "@/assets/me.png";
 ---
 
 <section class="py-24 bg-gradient-to-b from-white to-purple-50/50" id="about">
   <div class="container mx-auto px-4">
     <div class="max-w-3xl mx-auto text-center mb-16">
       <Image
-        src={meImage}
+        src="/images/me.png"
         alt="Image de Antonia"
+        width={200}
+        height={200}
         class="rounded-full w-48 h-48 mx-auto mb-4"
       />
       <h2 class="text-[2.5rem] font-medium text-primary mb-4">
