@@ -1,6 +1,5 @@
 ---
 import Container from "./container.astro";
-import logo from "@/assets/logo.svg";
 import { Image } from "astro:assets";
 
 const links = [
@@ -51,7 +50,7 @@ const links = [
             class="flex items-center space-x-2 px-4 py-1.5 pr-3 rounded-lg dark:bg-gray-800"
           >
             <div aria-hidden="true" class="-ml-1">
-              <Image src={logo} alt="logo" class="size-12" />
+              <Image src="/images/logo.svg" alt="logo" width={50} height={50} />
             </div>
             <span
               class="text-4xl font-bold text-[#9abdbe] dark:text-white font-logo"
