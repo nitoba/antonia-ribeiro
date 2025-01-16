@@ -28,6 +28,11 @@ export default defineConfig({
         access: "secret",
         startsWith: "cal_",
       }),
+      CAL_EVENT_URL: envField.string({
+        context: "client",
+        access: "public",
+        url: true,
+      }),
       APP_BASE_URL: envField.string({
         context: "server",
         access: "public",
